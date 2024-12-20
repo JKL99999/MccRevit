@@ -29,14 +29,15 @@ namespace Mcc.Revit.Master
 
         private void AppEvent_DocumentCreated(object sender, Autodesk.Revit.DB.Events.DocumentCreatedEventArgs e)
         {
-            //System.Windows.MessageBox.Show("启动完毕");
+            System.Windows.MessageBox.Show("新项目创建成功!");
         }
+
         private void AppEvent_ViewActivated(object sender, Autodesk.Revit.UI.Events.ViewActivatedEventArgs e)
         {
             Document doc = e.Document as Document;
             string viewName = doc.ActiveView.Name;
             string docPath = doc.PathName;
-            //System.Windows.MessageBox.Show($"文档路径:-{docPath}\n激活视图:-{viewName}");
+            System.Windows.MessageBox.Show($"文档路径:-{docPath}\n激活视图:-{viewName}");
 
         }
 
