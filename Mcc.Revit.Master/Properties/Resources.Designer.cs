@@ -63,6 +63,16 @@ namespace Mcc.Revit.Master.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap callmeB {
+            get {
+                object obj = ResourceManager.GetObject("callmeB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap StairColumn_32 {
             get {
                 object obj = ResourceManager.GetObject("StairColumn_32", resourceCulture);

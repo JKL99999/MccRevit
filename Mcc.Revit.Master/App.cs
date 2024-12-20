@@ -1,4 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using Mcc.Revit.Master.IServices;
+using Mcc.Revit.Master.Services;
+using Mcc.Revit.Master.ViewModels;
 using Mcc.Revit.Toolkit.Mvvm;
 using Mcc.Revit.Toolkit.Mvvm.Interfaces;
 using System;
@@ -20,6 +23,15 @@ namespace Mcc.Revit.Master
             containter.Register<IApplicationUI, AppUI>();
             //注册程序级事件
             containter.Register<IEventManager, AppEvent>();
+
+            //注册VM解耦的服务Service
+            containter.Register<IMaterialService, MaterialService>();
+
+            //注册命令级ViewModel。与View对应
+            containter.Register<MaterialsViewModel>();
+
+            //注册命令级View。新增按钮也统一在这里注册。
+            containter.Register<Views.Materials>();
         }
     }
 }

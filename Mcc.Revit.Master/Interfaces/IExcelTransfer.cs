@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mcc.Revit.Master.Interfaces
 {
-    internal class IExcelTransfer
+    public interface IExcelTransfer
     {
     }
 }

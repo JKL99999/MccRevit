@@ -3,8 +3,8 @@
 	<AddIn Type="Application">
 		<Name>宝冶大师</Name>
 		<Assembly>Master\Mcc.Revit.Master.dll</Assembly>
-		<FullClassName>Mcc.Revit.Master.ApplicationUI</FullClassName>
-		<AddInId>378A2D08-72F9-4E35-BE2A-46F8548915AC</AddInId>
+		<FullClassName>Mcc.Revit.Master.App</FullClassName>
+		<AddInId>AE8BB66A-807D-4B9C-8BBE-62715FFC3981</AddInId>
 		<VendorId>master1.0</VendorId>
 		<VendorDescription>
 			测试

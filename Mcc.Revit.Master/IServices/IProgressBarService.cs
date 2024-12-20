@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mcc.Revit.Master.IServices
 {
-    internal class IProgressBarService
+    public interface IProgressBarService
     {
     }
 }

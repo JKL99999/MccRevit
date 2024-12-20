@@ -19,6 +19,14 @@ namespace Mcc.Revit.Toolkit.Mvvm
         //非抽象子类，必须实现基类中的抽象方法。抽象方法的修饰符必须是Public
         public abstract void RegisterTypes(SimpleIoc containter);
 
+        //为每个不同的插件，配置单独的IOC容器，如果都使用默认的IOC，那么就会存在冲突
+        protected SimpleIoc PluginContainer { get; private set; }
+
+        public ApplicationBase()
+        {
+            PluginContainer = new SimpleIoc();
+            ServiceLocator.SetLocatorProvider(() => PluginContainer);
+        }
 
         public Result OnShutdown(UIControlledApplication application)
         {
@@ -39,17 +47,13 @@ namespace Mcc.Revit.Toolkit.Mvvm
             //开始初始化IOC容器，并根据接口或实例注入
             //容器写在Application这里，不可以使用AddinManager调试
 
-            if (!ServiceLocator.IsLocationProviderSet)
-            {
-                ServiceLocator.SetLocatorProvider(()=>SimpleIoc.Default);
-            }
             //IOC容器创建好后，就开始向Ioc容器中添加各种所需用的对象
-            SimpleIoc.Default.Register<UIControlledApplication>(()=>application);
-            SimpleIoc.Default.Register<IUIProvider,UIProvider>();
-            SimpleIoc.Default.Register<IDataContext, DataContext>();
+            PluginContainer.Register<UIControlledApplication>(()=>application);
+            PluginContainer.Register<IUIProvider,UIProvider>();
+            PluginContainer.Register<IDataContext, DataContext>();
 
             //执行子类重载之后的方法，进行服务的注册
-            RegisterTypes(SimpleIoc.Default);
+            RegisterTypes(PluginContainer);
 
             //订阅事件
             var events = ServiceLocator.Current.GetInstance<IEventManager>();
