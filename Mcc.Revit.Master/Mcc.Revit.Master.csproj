@@ -1,0 +1,200 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!--默认的配置项依然存在，只是这里不显示-->
+	<PropertyGroup>
+		<!--修改框架版本.Revit2020使用的是.net4.7.2-->
+		<TargetFramework>net48</TargetFramework>
+
+		<!--添加WPF支持。之后就可以添加窗口，页面等等-->
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<PlatformTarget>x64</PlatformTarget>
+
+		<!--包的一些信息，方便打包上线让别人使用-->
+		<Authors>ljk</Authors>
+		<Copyright>Mcc</Copyright>
+
+		<!--启动外部程序-->
+		<Configurations>Debug;Release;RVT_16_Debug;RVT_16_Release;RVT_17_Debug;RVT_17_Release;RVT_18_Release;RVT_18_Debug;RVT_19_Release;RVT_19_Debug;RVT_20_Release;RVT_21_Debug;RVT_21_Release;RVT_20_Debug;RVT_22_Release;RVT_22_Debug</Configurations>
+
+	</PropertyGroup>
+	
+		
+	<!--多版本.net框架配置-->
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_16_Debug'">
+		<TargetFramework>net452</TargetFramework>
+		<RvtVersion>2016</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2016\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_16_Release'">
+		<TargetFramework>net452</TargetFramework>
+		<RvtVersion>2016</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2016\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_17_Debug'">
+		<TargetFramework>net46</TargetFramework>
+		<RvtVersion>2017</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_17_Release'">
+		<TargetFramework>net46</TargetFramework>
+		<RvtVersion>2017</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_18_Debug'">
+		<TargetFramework>net46</TargetFramework>
+		<RvtVersion>2018</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2018\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_18_Release'">
+		<TargetFramework>net46</TargetFramework>
+		<RvtVersion>2018</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2018\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_19_Debug'">
+		<TargetFramework>net472</TargetFramework>
+		<RvtVersion>2019</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2019\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_19_Release'">
+		<TargetFramework>net472</TargetFramework>
+		<RvtVersion>2019</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2019\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_20_Debug'">
+		<TargetFramework>net48</TargetFramework>
+		<RvtVersion>2020</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2020\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_20_Release'">
+		<TargetFramework>net48</TargetFramework>
+		<RvtVersion>2020</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2020\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_21_Debug'">
+		<TargetFramework>net48</TargetFramework>
+		<RvtVersion>2021</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_21_Release'">
+		<TargetFramework>net48</TargetFramework>
+		<RvtVersion>2021</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_22_Debug'">
+		<TargetFramework>net48</TargetFramework>
+		<RvtVersion>2022</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2022\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_22_Release'">
+		<TargetFramework>net48</TargetFramework>
+		<RvtVersion>2022</RvtVersion>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2022\Revit.exe</StartProgram>
+	</PropertyGroup>
+<!--多版本.net框架配置-->
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_16_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_17_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_18_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_19_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_20_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_21_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_22_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+
+	<!--引用的第三方包-->
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Properties\Settings.Designer.cs">
+	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Settings.settings</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Properties\Settings.settings">
+	    <Generator>SettingsSingleFileGenerator</Generator>
+	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Mcc.Revit.Entity\Mcc.Revit.Entity.csproj" />
+	</ItemGroup>
+	
+
+	<!--复制Addin文件到Revit插件目录-->
+	<!--为了适应多版本，在PropertyGroup中定义了一个版本变量RvtVersion-->
+	<Target Name="CopyAddin" BeforeTargets="PostBuildEvent">
+		 <!--1.0 复制addin 这里需要修改的地方是具体的addin的文件名--> 
+		<Copy SourceFiles="$(ProjectDir)\Mcc.addin" DestinationFolder="C:\ProgramData\Autodesk\Revit\Addins\$(RvtVersion)"></Copy>
+	
+		<!--2.0 复制bin生成目录下的dll文件-->
+		<!--2.1 由于编译生成的是一个文件夹，因此我们定义了个ItemGroup.SourceFiles是自定义名称-->
+		<ItemGroup>
+			<SourceFiles Include="$(ProjectDir)$(OutDir)\**\*.*"></SourceFiles>
+		</ItemGroup>
+		<!-- 2.2将生成的文件一个个循环复制到Revit插件目录的Saury文件夹下-->
+		<Copy SourceFiles="@(SourceFiles)" DestinationFiles="@(SourceFiles->'C:\ProgramData\Autodesk\Revit\Addins\$(RvtVersion)\Master\%(RecursiveDir)%(Filename)%(Extension)')"></Copy>
+	</Target>
+
+</Project>

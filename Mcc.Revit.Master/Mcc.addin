@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>宝冶大师</Name>
+		<Assembly>Master\Mcc.Revit.Master.dll</Assembly>
+		<FullClassName>Mcc.Revit.Master.ApplicationUI</FullClassName>
+		<AddInId>378A2D08-72F9-4E35-BE2A-46F8548915AC</AddInId>
+		<VendorId>master1.0</VendorId>
+		<VendorDescription>
+			测试
+		</VendorDescription>
+	</AddIn>
+</RevitAddIns>

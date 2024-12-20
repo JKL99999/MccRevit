@@ -1,0 +1,45 @@
+﻿<Window
+    x:Class="Mcc.Revit.Master.Views.MaterialDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Mcc.Revit.Master.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="detailmaterialWindow"
+    xmlns:c="clr-namespace:Mcc.Revit.Master.Converters"
+    Title="MaterialDialog"
+    Width="350"
+    Height="250"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <c:ColorConverter x:Key="ColorConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Margin="10,10,10,10" >
+            <TextBlock Text="名称"/>
+           
+            <TextBox Margin="0,5" Text="{Binding Name}"/>
+            <TextBlock Text="着色颜色"/>
+          
+            <Button Height="20" Margin="0,5" 
+             Background="{Binding Color,Converter={StaticResource ColorConverter}}"
+             Command="{Binding SetColorCommand}"/>
+            <TextBlock Text="外观颜色"/>
+            
+            <Button Height="20" Margin="0,5" 
+             Background="{Binding AppearanceColor,Converter={StaticResource ColorConverter}}"
+             Command="{Binding SetApperanceColorCommand}"/>
+        </StackPanel>
+      
+        <Border Grid.Row="1" Margin="5" Padding="0,5,0,0" BorderBrush="Gray">
+            <Button Command="{Binding SubmitCommand}" Content="确定"/>
+        </Border>
+    </Grid>
+</Window>

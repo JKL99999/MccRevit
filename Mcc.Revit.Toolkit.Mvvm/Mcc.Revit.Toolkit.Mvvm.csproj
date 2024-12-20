@@ -1,0 +1,119 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <!--修改框架版本.Revit2020使用的是.net4.7.2-->
+	  <TargetFramework>net48</TargetFramework>
+
+	  <!--添加WPF支持。之后就可以添加窗口，页面等等-->
+	  <UseWPF>true</UseWPF>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <PlatformTarget>x64</PlatformTarget>
+	  <Configurations>Debug;Release;RVT_16_Debug;RVT_16_Release;RVT_17_Debug;RVT_17_Release;RVT_18_Release;RVT_18_Debug;RVT_19_Release;RVT_19_Debug;RVT_20_Release;RVT_21_Debug;RVT_21_Release;RVT_20_Debug;RVT_22_Release;RVT_22_Debug</Configurations>
+
+  </PropertyGroup>
+
+	<!--多版本.net框架配置-->
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_16_Debug'">
+		<TargetFramework>net452</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_16_Release'">
+		<TargetFramework>net452</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_17_Debug'">
+		<TargetFramework>net46</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_17_Release'">
+		<TargetFramework>net46</TargetFramework>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_18_Debug'">
+		<TargetFramework>net46</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_18_Release'">
+		<TargetFramework>net46</TargetFramework>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_19_Debug'">
+		<TargetFramework>net472</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_19_Release'">
+		<TargetFramework>net472</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_20_Debug'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_20_Release'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_21_Debug'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_21_Release'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_22_Debug'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='RVT_22_Release'">
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+	<!--多版本.net框架配置-->
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_16_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_17_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_18_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_19_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_20_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_21_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_22_Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mcc.Revit.Toolkit.Extension\Mcc.Revit.Toolkit.Extension.csproj" />
+  </ItemGroup>
+
+</Project>

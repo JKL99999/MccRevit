@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Mcc.Revit.Master": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

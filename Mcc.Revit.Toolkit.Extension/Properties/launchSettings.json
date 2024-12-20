@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Mcc.Revit.Toolkit.Extension": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
