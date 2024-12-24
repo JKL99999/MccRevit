@@ -24,12 +24,12 @@ namespace Mcc.Revit.Master.Views
     /// </summary>
     public partial class Materials : Window
     {
-        public MaterialsViewModel _materialsViewModel;
+        //public MaterialsViewModel _materialsViewModel;
         public Materials(Document document)
         {
             InitializeComponent();
-            _materialsViewModel = new MaterialsViewModel(document);
-            this.DataContext = _materialsViewModel;
+            //_materialsViewModel = new MaterialsViewModel(document);
+            //this.DataContext = _materialsViewModel;
 
             //消息通知
             Messenger.Default.Register<bool>(this,Tokens.CloseWindow, CloseWindow);
@@ -41,8 +41,15 @@ namespace Mcc.Revit.Master.Views
         private void ShowMaterialDialog(NotificationMessageAction<MaterialDTO> message)
         {
             MaterialDialog dialog = new MaterialDialog();
-            dialog.DataContext = new MaterialDialogViewModel(message);
-            dialog.ShowDialog();
+            MaterialDialogViewModel dialogViewModel = (MaterialDialogViewModel)message.Target;
+            dialog.DataContext = dialogViewModel;
+            dialogViewModel.Initial(message.Sender);
+            // 将编辑材质窗口展示出来；创建材质窗口关闭的时候result返回true
+            if (dialog.ShowDialog().Value)
+            {
+                //子窗口submit提交后，把创建或者修改的Material发送给父窗口VM,消息的回调函数更新数据
+                message.Execute(dialogViewModel.Material);
+            }
         }
 
         //简单的不带消息回调的消息中心的使用方式

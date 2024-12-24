@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Mcc.Revit.Entity;
 using Mcc.Revit.Master.Contacts;
+using Mcc.Revit.Master.IServices;
 using Mcc.Revit.Master.Views;
 using Mcc.Revit.Toolkit.Extension;
 using System;
@@ -22,10 +23,10 @@ namespace Mcc.Revit.Master.ViewModels
 {
     public class MaterialsViewModel:ViewModelBase
     {
-        private Document _document;
-        public MaterialsViewModel(Document document)
+        private readonly IMaterialService _service;
+        public MaterialsViewModel(IMaterialService service)
         {
-            this._document = document;
+            this._service = service;
             QueryElements();
 
         }
@@ -67,7 +68,7 @@ namespace Mcc.Revit.Master.ViewModels
 
         private void CreateElement()
         {
-            MessengerInstance.Send(new NotificationMessageAction<MaterialDTO>(null,_document, "Create", (e) => { 
+            MessengerInstance.Send(new NotificationMessageAction<MaterialDTO>(null, new MaterialDialogViewModel(this._service),"Create", (e) => { 
                 if (e != null)
                 {
                     Materials.Insert(0, e);
@@ -93,11 +94,7 @@ namespace Mcc.Revit.Master.ViewModels
 
         private void QueryElements()
         {
-            FilteredElementCollector elements = new FilteredElementCollector(_document).OfClass(typeof(Material));
-            var materials = elements.ToList()
-                .ConvertAll(e => new MaterialDTO(e as Material))
-                .Where(e => string.IsNullOrEmpty(Keyword)||e.Name.Contains(Keyword));
-            Materials = new ObservableCollection<MaterialDTO>(materials);
+            Materials = new ObservableCollection<MaterialDTO>(_service.GetElements(e => string.IsNullOrEmpty(Keyword) || e.Name.Contains(Keyword)));
         }
 
         //private RelayCommand<IList> _deleteElementCommand;
@@ -108,15 +105,8 @@ namespace Mcc.Revit.Master.ViewModels
 
         private void DeleteRevitElements(IList item)
         {
-            _document.NewTransaction("删除材质", () =>
-            {
-                for (int i = item.Count-1; i >=0; i--)
-                {
-                    MaterialDTO material = item[i] as MaterialDTO;
-                    _document.Delete(material.Material.Id);
-                    Materials.Remove(material);
-                }
-            });
+            _service.DeleteElements(item.Cast<MaterialDTO>());
+            QueryElements();
         }
     }
 }

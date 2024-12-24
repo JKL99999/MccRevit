@@ -16,11 +16,13 @@ namespace Mcc.Revit.Toolkit.Mvvm
         //和以前的写法不太一样
         //var uiDoc = commandData.Application.ActiveUIDocument;
         //var doc = uiDoc.Document;
+
+        public SimpleIoc ContainerProvider => ApplicationBase.ContainerProvider;
         public Document GetDocument()
         {
             //容器池是程序公用的。默认的池子名称是default。
             //从default容器里面获取注册的Document服务
-            return SimpleIoc.Default.GetInstance<Document>();
+            return ContainerProvider.GetInstance<Document>();
         }
 
         public UIApplication GetUIApplication()

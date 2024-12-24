@@ -25,11 +25,15 @@ namespace Mcc.Revit.Toolkit.Mvvm
         //DataContext是在OnstartUp方法中注册到容器的，包含了document,UIAPPLication,UIDocument，在不同地方注册到容器
         protected IDataContext DataContext { get => ServiceLocator.Current.GetInstance<IDataContext>(); }
 
+        public SimpleIoc ContainerProvider => ApplicationBase.ContainerProvider;
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            SimpleIoc.Default.Register<Document>(()=>commandData.Application.ActiveUIDocument.Document);
 
-            RegisterTypes(SimpleIoc.Default);
+
+            ContainerProvider.Register<Document>(()=>commandData.Application.ActiveUIDocument.Document);
+
+            RegisterTypes(ContainerProvider);
 
             var window = CreateMainWindow();
 
@@ -41,7 +45,7 @@ namespace Mcc.Revit.Toolkit.Mvvm
             Execute(ref message, elements);
 
             //取消注册Document，那么依赖Document的注册也取消了
-            SimpleIoc.Default.Unregister<Document>();
+            ContainerProvider.Unregister<Document>();
             return Result.Succeeded;
         }
     }

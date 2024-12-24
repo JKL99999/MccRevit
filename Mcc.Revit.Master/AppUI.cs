@@ -26,7 +26,7 @@ namespace Mcc.Revit.Master
             _uiProvider.GetUIApplication().CreateRibbonTab(_tab);
             RibbonPanel panel = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "资源");
             RibbonPanel toWebPanel = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "联系我");
-            panel.CreateButton<MaterialsCommand>(
+            panel.CreateButton<MaterialCommand>(
                (b) => {
                    b.Text = "材质管理";
                    b.ToolTip = "材质CRUD";

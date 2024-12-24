@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Ioc;
 using Mcc.Revit.Master.IServices;
 using Mcc.Revit.Master.Services;
 using Mcc.Revit.Master.ViewModels;
@@ -17,8 +18,11 @@ namespace Mcc.Revit.Master
         //程序的主入口文件
         //程序按照ApplicationBase里面定义的方法顺序执行的
         //最后在Onstat()方法内部执行RegisterTypes(SimpleIoc.Default)
+        public static SimpleIoc CurrentContainer => (SimpleIoc)ServiceLocator.Current;
+
+
         public override void RegisterTypes(SimpleIoc containter)
-        {
+        { 
             //注册程序级UI
             containter.Register<IApplicationUI, AppUI>();
             //注册程序级事件
