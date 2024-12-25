@@ -22,7 +22,12 @@ namespace Mcc.Revit.Master.Services
 
         public MaterialDTO CreateElement(string name)
         {
-            throw new NotImplementedException();
+            Element element = null;
+            _dataContext.GetDocument().NewTransaction("创建材质", () => {
+                ElementId id = Material.Create(_dataContext.GetDocument(), name);
+                element = _dataContext.GetDocument().GetElement(id);
+            });
+            return new MaterialDTO(element as Material);
         }
 
         public void DeleteElement(MaterialDTO element)

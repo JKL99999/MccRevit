@@ -57,7 +57,10 @@ namespace Mcc.Revit.Master.ViewModels
         private void EditMaterial(MaterialDTO material)
         {
             //MessengerInstance.Send(material, Tokens.ShowMaterialDialog);
-            MessengerInstance.Send(new NotificationMessageAction<MaterialDTO>(material, "Edit", (e) => { }), Tokens.ShowMaterialDialog);
+            MessengerInstance.Send(new NotificationMessageAction<MaterialDTO>(material, 
+                new MaterialDialogViewModel(this._service), 
+                "Edit", (e) => { }), 
+                Tokens.ShowMaterialDialog);
         }
 
         //创建材质
