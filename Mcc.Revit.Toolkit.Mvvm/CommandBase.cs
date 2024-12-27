@@ -31,21 +31,38 @@ namespace Mcc.Revit.Toolkit.Mvvm
         {
 
 
-            ContainerProvider.Register<Document>(()=>commandData.Application.ActiveUIDocument.Document);
-
-            RegisterTypes(ContainerProvider);
-
-            var window = CreateMainWindow();
-
-            if (window != null)
+            try
             {
-                MainWindow = window;
-            }
-            //执行命令
-            Execute(ref message, elements);
+                // 注册 Document 到 IOC 容器
+                ContainerProvider.Register<Document>(() => commandData.Application.ActiveUIDocument.Document);
+                //MessageBox.Show(ContainerProvider.GetHashCode().ToString());
+                // 注册其他类型
+                RegisterTypes(ContainerProvider);
 
-            //取消注册Document，那么依赖Document的注册也取消了
-            ContainerProvider.Unregister<Document>();
+                // 创建主窗口
+                var window = CreateMainWindow();
+
+                if (window != null)
+                {
+                    MainWindow = window;
+                }
+
+                // 执行具体的命令逻辑
+                Execute(ref message, elements);
+            }
+            catch (Exception ex)
+            {
+                // 处理异常
+                message = ex.Message;
+                return Result.Failed;  // 返回 Result.Failed
+            }
+            finally
+            {
+                // 取消注册 Document
+                ContainerProvider.Unregister<Document>();
+            }
+
+            // 这一行不会执行
             return Result.Succeeded;
         }
     }

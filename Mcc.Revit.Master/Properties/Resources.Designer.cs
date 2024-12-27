@@ -63,9 +63,9 @@ namespace Mcc.Revit.Master.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap callmeB {
+        internal static System.Drawing.Bitmap dragon {
             get {
-                object obj = ResourceManager.GetObject("callmeB", resourceCulture);
+                object obj = ResourceManager.GetObject("dragon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Mcc.Revit.Master.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap StairColumn_32 {
+        internal static System.Drawing.Bitmap dragonBig {
             get {
-                object obj = ResourceManager.GetObject("StairColumn_32", resourceCulture);
+                object obj = ResourceManager.GetObject("dragonBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,59 @@ namespace Mcc.Revit.Master.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap StairColumn_64 {
+        internal static System.Drawing.Bitmap material {
             get {
-                object obj = ResourceManager.GetObject("StairColumn_64", resourceCulture);
+                object obj = ResourceManager.GetObject("material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap materialBig {
+            get {
+                object obj = ResourceManager.GetObject("materialBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap test {
+            get {
+                object obj = ResourceManager.GetObject("test", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap testBig {
+            get {
+                object obj = ResourceManager.GetObject("testBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toWeb {
+            get {
+                object obj = ResourceManager.GetObject("toWeb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap toWebBig {
+            get {
+                object obj = ResourceManager.GetObject("toWebBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

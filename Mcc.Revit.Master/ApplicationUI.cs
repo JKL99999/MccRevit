@@ -25,7 +25,7 @@ namespace Mcc.Revit.Master
                 (b) => {
                     b.Text = "材质管理";
                     b.ToolTip = "材质CRUD";
-                    b.LargeImage = Properties.Resources.StairColumn_32.ConvertToBitmapSource();
+                    b.LargeImage = Properties.Resources.materialBig.ConvertToBitmapSource();
                 }
             );
 

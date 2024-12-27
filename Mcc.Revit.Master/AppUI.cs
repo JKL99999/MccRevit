@@ -23,24 +23,52 @@ namespace Mcc.Revit.Master
         {
             const string _tab = "宝冶大师";
             //Tab -> Panel ->Button
-            _uiProvider.GetUIApplication().CreateRibbonTab(_tab);
-            RibbonPanel panel = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "资源");
-            RibbonPanel toWebPanel = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "联系我");
+            UIControlledApplication application = _uiProvider.GetUIApplication();
+
+            application.CreateRibbonTab(_tab);
+            RibbonPanel panel = application.CreateRibbonPanel(_tab, "资源");
+            RibbonPanel toWebPanel = application.CreateRibbonPanel(_tab, "联系我");
+            RibbonPanel testPanel = application.CreateRibbonPanel(_tab, "模块测试");
+            RibbonPanel dockablePanel = application.CreateRibbonPanel(_tab, "可停靠窗口");
             panel.CreateButton<MaterialCommand>(
                (b) => {
                    b.Text = "材质管理";
                    b.ToolTip = "材质CRUD";
-                   b.LargeImage = Properties.Resources.StairColumn_32.ConvertToBitmapSource();
+                   b.LargeImage = Properties.Resources.materialBig.ConvertToBitmapSource();
+                   b.Image = Properties.Resources.material.ConvertToBitmapSource();
                }
             );
 
+          
+
+            testPanel.CreateButton<Commands.Test.DocumentCommand>(
+            (b) => {
+                b.Text = "功能测试";
+                b.ToolTip = "DocumentAndIOC";
+                b.LargeImage = Properties.Resources.testBig.ConvertToBitmapSource();
+                b.Image = Properties.Resources.test.ConvertToBitmapSource();
+            }
+            );
+
+            dockablePanel.CreateButton<Commands.DockablePaneCommand>((b) => {
+                b.Text = "可停靠窗口";
+                b.ToolTip = "可停靠窗口";
+                b.LargeImage = Properties.Resources.dragonBig.ConvertToBitmapSource();
+                b.Image = Properties.Resources.dragon.ConvertToBitmapSource();
+            });
+            //UIControlledApplication注册可停靠窗口
+            application.RegisterDockablePane(DockablePanes.DockablePaneProvider.Id, "DockablePane", new DockablePanes.DockablePaneProvider());
+
+
             toWebPanel.CreateButton<Commands.HelpCommand>(
-              (b) => {
-                  b.Text = "技术支持";
-                  b.ToolTip = "是初一不是十五";
-                  b.LargeImage = Properties.Resources.callmeB.ConvertToBitmapSource();
-              }
-           );
+            (b) => {
+                b.Text = "技术支持";
+                b.ToolTip = "是初一不是十五";
+                b.LargeImage = Properties.Resources.toWebBig.ConvertToBitmapSource();
+                b.Image = Properties.Resources.toWeb.ConvertToBitmapSource();
+            }
+          );
+
             return Result.Succeeded;
         }
     }

@@ -1,5 +1,8 @@
-﻿using CommonServiceLocator;
+﻿using Autodesk.Revit.UI;
+using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
+using Mcc.Revit.Master.Cache;
+using Mcc.Revit.Master.ExtEvents;
 using Mcc.Revit.Master.IServices;
 using Mcc.Revit.Master.Services;
 using Mcc.Revit.Master.ViewModels;
@@ -20,11 +23,21 @@ namespace Mcc.Revit.Master
         //最后在Onstat()方法内部执行RegisterTypes(SimpleIoc.Default)
         public static SimpleIoc CurrentContainer => (SimpleIoc)ServiceLocator.Current;
 
+        public static App Current { get; private set; }
+
+        //注册外部事件
+        private ExternalEvent _createText;
 
         public override void RegisterTypes(SimpleIoc containter)
-        { 
+        {
+            Current = this;
+
+            //初始化外部事件的方法
+            RegisterExternalEvents();
+
             //注册程序级UI
             containter.Register<IApplicationUI, AppUI>();
+
             //注册程序级事件
             containter.Register<IEventManager, AppEvent>();
 
@@ -36,6 +49,14 @@ namespace Mcc.Revit.Master
 
             //注册命令级View。新增按钮也统一在这里注册。
             containter.Register<Views.Materials>();
+        }
+
+        private void RegisterExternalEvents()
+        {
+            //注册外部事件,把载入族的外部事件提前加载进来
+            CreateText createText = new CreateText();
+            _createText = ExternalEvent.Create(createText);
+            SysCache.Instance.CreateText = _createText;
         }
     }
 }
