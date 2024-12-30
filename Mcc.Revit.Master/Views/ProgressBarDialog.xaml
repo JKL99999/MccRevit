@@ -1,0 +1,30 @@
+﻿<Window
+    x:Class="Mcc.Revit.Master.Views.ProgressBarDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Mcc.Revit.Master.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ProgressBarDialog"
+    Width="500"
+    Height="100"
+    AllowsTransparency="True"
+    Background="Transparent"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel>
+            <ProgressBar
+                Height="15"
+                Maximum="{Binding Maximum}"
+                Value="{Binding Value}" />
+            <TextBlock
+                Margin="20"
+                HorizontalAlignment="Center"
+                FontWeight="Black"
+                Text="{Binding Title}" />
+        </StackPanel>
+
+    </Grid>
+</Window>

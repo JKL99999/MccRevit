@@ -8,5 +8,7 @@ namespace Mcc.Revit.Master.IServices
 {
     public interface IProgressBarService
     {
+        void Start(int maximum);
+        void Stop();
     }
 }

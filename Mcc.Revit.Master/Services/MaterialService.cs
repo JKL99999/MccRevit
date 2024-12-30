@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using GalaSoft.MvvmLight.Messaging;
 using Mcc.Revit.Entity;
 using Mcc.Revit.Master.IServices;
 using Mcc.Revit.Toolkit.Extension;
@@ -40,6 +41,7 @@ namespace Mcc.Revit.Master.Services
             _dataContext.GetDocument().NewTransaction("删除多个材质",
                 () => {
                     foreach (MaterialDTO element in elements) {
+                        Messenger.Default.Send<string>(element.Name, Contacts.Tokens.ProgressBarTitle);
                         _dataContext.GetDocument().Delete(element.Material.Id);
                         _dataContext.GetDocument().Regenerate();
                     } 

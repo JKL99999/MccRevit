@@ -24,9 +24,12 @@ namespace Mcc.Revit.Master.ViewModels
     public class MaterialsViewModel:ViewModelBase
     {
         private readonly IMaterialService _service;
-        public MaterialsViewModel(IMaterialService service)
+        private readonly IProgressBarService _progressBarService;
+
+        public MaterialsViewModel(IMaterialService service,IProgressBarService progressBarService)
         {
             this._service = service;
+            this._progressBarService = progressBarService;
             QueryElements();
 
         }
@@ -108,8 +111,10 @@ namespace Mcc.Revit.Master.ViewModels
 
         private void DeleteRevitElements(IList item)
         {
+            this._progressBarService.Start(item.Count);
             _service.DeleteElements(item.Cast<MaterialDTO>());
             QueryElements();
+            this._progressBarService.Stop();
         }
     }
 }

@@ -43,12 +43,15 @@ namespace Mcc.Revit.Master
 
             //注册VM解耦的服务Service
             containter.Register<IMaterialService, MaterialService>();
+            containter.Register<IProgressBarService, ProgressBarService>();
 
             //注册命令级ViewModel。与View对应
             containter.Register<MaterialsViewModel>();
+            containter.Register<ProgressBarDialogViewModel>();
 
             //注册命令级View。新增按钮也统一在这里注册。
             containter.Register<Views.Materials>();
+            containter.Register<Views.ProgressBarDialog>();
         }
 
         private void RegisterExternalEvents()

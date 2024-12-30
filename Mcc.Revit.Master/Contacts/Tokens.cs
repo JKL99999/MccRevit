@@ -11,6 +11,7 @@ namespace Mcc.Revit.Master.Contacts
         public static string CloseWindow { get => "CloseWindow"; }
         public static string CloseDialogWindow { get => "CloseDialogWindow"; }
         public static string ShowMaterialDialog { get => "ShowMaterialDialog"; }
-        
+        public static string ProgressBarMaximum { get => "ProgressBarMaximum"; }
+        public static string ProgressBarTitle { get => "ProgressBarTitle"; }
     }
 }
