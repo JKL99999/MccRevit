@@ -50,6 +50,7 @@ namespace Mcc.Revit.Master
             containter.Register<ProgressBarDialogViewModel>();
 
             //注册命令级View。新增按钮也统一在这里注册。
+
             containter.Register<Views.Materials>();
             containter.Register<Views.ProgressBarDialog>();
         }
