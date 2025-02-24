@@ -31,7 +31,6 @@ namespace Mcc.Revit.Master.ViewModels
             this._service = service;
             this._progressBarService = progressBarService;
             QueryElements();
-
         }
         //搜索框里面的text
         private string _keyword;
@@ -39,7 +38,7 @@ namespace Mcc.Revit.Master.ViewModels
         {
             get { return _keyword; }
             //当前端View层修改了keyword后，会自动执行set
-            //通过RaiseCanExecuteChanged告诉后端执行_queryElementsCommand实例
+            //通过TextChanged告诉后端执行_queryElementsCommand实例
             set { _keyword = value;}
         }
 
@@ -94,9 +93,21 @@ namespace Mcc.Revit.Master.ViewModels
             MessengerInstance.Send(true, Tokens.CloseWindow);
         }
 
+        // 新增 CancelCommand
+        public RelayCommand CancelCommand
+        {
+            get => new RelayCommand(Cancel);
+        }
+
+        private void Cancel()
+        {
+            MessengerInstance.Send(true, Tokens.CloseWindow); // 发送关闭窗口的消息
+        }
+
         public RelayCommand QueryElementsCommand {
             get => new RelayCommand(QueryElements);
         }
+
 
         private void QueryElements()
         {
@@ -105,7 +116,7 @@ namespace Mcc.Revit.Master.ViewModels
 
         //private RelayCommand<IList> _deleteElementCommand;
 
-        public RelayCommand<IList> DeleteElementCommand {
+        public RelayCommand<IList> DeleteElementsCommand {
             get => new RelayCommand<IList>(DeleteRevitElements);
         }
 

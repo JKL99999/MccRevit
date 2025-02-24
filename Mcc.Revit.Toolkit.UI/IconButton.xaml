@@ -1,0 +1,58 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Mcc.Revit.Toolkit.UI">
+
+    <SolidColorBrush x:Key="MccSbcMainForeground" Color="#393F48" />
+    <SolidColorBrush x:Key="MccSbcMainBackground" Color="#F7F7F7" />
+
+    <Style x:Key="MccSbcButtonBase" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource MccSbcMainBackground}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource MccSbcMainForeground}" />
+    </Style>
+
+    <Style
+        BasedOn="{StaticResource MccSbcButtonBase}"
+        TargetType="{x:Type local:IconButton}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IconButton}">
+                    <Border
+                        x:Name="back"
+                        Margin="{TemplateBinding Margin}"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="3">
+                        <StackPanel Margin="5,1" Orientation="Horizontal">
+                            <!--  绑定的是Icon属性的值  -->
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontFamily="{TemplateBinding IconFontFamily}"
+                                FontSize="14"
+                                SnapsToDevicePixels="True"
+                                Text="{TemplateBinding Icon}" />
+                            <!--  绑定的是Content的值  -->
+                            <ContentPresenter
+                                Margin="{TemplateBinding Interval}"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </StackPanel>
+                    </Border>
+                    <!--  添加触发器：鼠标移动上去改变背景颜色；控件不可用时候调整透明度  -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="#EAEAEA" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="UIElement.Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

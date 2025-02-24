@@ -1,0 +1,85 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Mcc.Revit.Toolkit.UI">
+
+    <Style x:Key="{x:Type local:TipTextBox}" TargetType="{x:Type local:TipTextBox}">
+        <Setter Property="Foreground" Value="#6b6882" />
+        <Setter Property="BorderBrush" Value="#CCCCCC" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="local:TipTextBox.CornerRadius" Value="3" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="#FFFFFFFF" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <!--  移除框架元素获得焦点时默认的虚线框。  -->
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+        <!--  允许控件可以接收拖放操作  -->
+        <Setter Property="UIElement.AllowDrop" Value="True" />
+        <!--  在使用触摸时，ScrollViewer更倾向于垂直方向先滚动  -->
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <!--  禁用当使用触控笔时的轻弹（flick）手势功能。  -->
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TipTextBox}">
+                    <Border
+                        Name="border"
+                        Padding="2"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        SnapsToDevicePixels="True">
+                        <Grid>
+                            <TextBlock
+                                Name="tip"
+                                Margin="2,0,0,0"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Foreground="#FF808080"
+                                Text="{TemplateBinding Tip}"
+                                Visibility="Hidden" />
+                            <!--  通常在包含文本内容如TextBox或RichTextBox的模板中使用，用于在需要时提供滚动功能  -->
+                            <!--  设置为不显示滚动条以及不接受焦点。为了在模板中为内容提供一个简单的滚动容器，而不改变控件的视觉或导航行为  -->
+                            <ScrollViewer
+                                Name="PART_ContentHost"
+                                Focusable="False"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden" />
+                        </Grid>
+                    </Border>
+                    <!--  ControlTemplate Trigger通常监听的是模板内部定义控件的属性变化,可以访问模板内部定义的控件  -->
+                    <!--  ControlTemplate中的Trigger只能作用在使用该模板的控件上。  -->
+                    <ControlTemplate.Triggers>
+                        <!--  Text属性为空字符串时，将输入框设置为可见。通常用于提示用户输入的场景，例如，当文本框为空时显示提示信息。  -->
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="tip" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <!--  IsEnabled属性为False时，会将不透明度设置为0.5。使得控件看起来变淡，表示它是禁用状态  -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="UIElement.Opacity" Value="0.5" />
+                        </Trigger>
+                        <!--  当控件获得键盘焦点时将边框颜色设置为浅灰色。  -->
+                        <Trigger Property="UIElement.IsKeyboardFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#161823" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--  Style Trigger监听的是控件本身的属性变化，可包含多个Trigger和MultiTrigger，用于改变控件的外观、布局、行为等  -->
+        <!--  Style中的Trigger访问不到ControlTemplate内部的元素  -->
+        <!--  不同在于触发后的结果同样是只能将TargetType的某个属性改变  -->
+        <Style.Triggers>
+            <MultiTrigger>
+                <!--  当TextBox处于非活动状态下,比如当用户的焦点不在这个TextBox上时  -->
+                <!--  选中文本的显示颜色会使用系统非活动状态下的颜色  -->
+                <MultiTrigger.Conditions>
+                    <!--  MultiTrigger必须全部满足条件才能触发  -->
+                    <Condition Property="TextBoxBase.IsInactiveSelectionHighlightEnabled" Value="True" />
+                    <Condition Property="TextBoxBase.IsSelectionActive" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="TextBoxBase.SelectionBrush" Value="{DynamicResource SystemColors.InactiveSelectionHighlightBrushKey}" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

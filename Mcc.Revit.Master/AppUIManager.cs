@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Mcc.Revit.Master
 {
-    public class AppUI : IApplicationUI
+    public class AppUIManager : IApplicationUI
     {
         //将UIProvider存储，提供给后面使用
         private readonly IUIProvider _uiProvider;
-        public AppUI(IUIProvider uIProvider)
+        public AppUIManager(IUIProvider uIProvider)
         {
             this._uiProvider = uIProvider;
         }

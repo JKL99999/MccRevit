@@ -151,6 +151,10 @@
 		<Optimize>True</Optimize>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\iconfont.ttf" />
+	</ItemGroup>
+
 
 	<!--引用的第三方包-->
 	<ItemGroup>
@@ -179,6 +183,12 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Mcc.Revit.Entity\Mcc.Revit.Entity.csproj" />
+	  <ProjectReference Include="..\Mcc.Revit.Toolkit.UI\Mcc.Revit.Toolkit.UI.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Resources\iconfont.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 	
 

@@ -30,6 +30,9 @@ namespace Mcc.Revit.Master.Views
             InitializeComponent();
             //_materialsViewModel = new MaterialsViewModel(document);
             //this.DataContext = _materialsViewModel;
+            // 绑定到 Revit 的主窗体
+            System.Windows.Interop.WindowInteropHelper mainUI = new System.Windows.Interop.WindowInteropHelper(this);
+            mainUI.Owner = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
 
             //消息通知
             Messenger.Default.Register<bool>(this,Tokens.CloseWindow, CloseWindow);

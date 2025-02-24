@@ -4,6 +4,7 @@ using Autodesk.Revit.UI;
 using Mcc.Revit.Toolkit.Mvvm.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,14 @@ namespace Mcc.Revit.Toolkit.Mvvm
 
         public IntPtr GetWindowHandle()
         {
+
+#if !RVT_22_DEBUG
             return GetUIApplication().MainWindowHandle;
+#endif
+
+#if RVT_16_DEBUG
+            return Process.GetCurrentProcess().MainWindowHandle;
+#endif
         }
 
         public AddInId GetAddInId()

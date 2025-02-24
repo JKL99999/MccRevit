@@ -12,20 +12,22 @@ using System.Threading.Tasks;
 
 namespace Mcc.Revit.Toolkit.Mvvm
 {
-    public abstract class ApplicationBase : IExternalApplication
+    public abstract class ExternalApplicationBase : IExternalApplication
     {
         //程序的主入口
         //有抽象属性或抽象方法的类一定是抽象类(abstract class)，抽象类中的属性或方法不一定都是抽象的
         //非抽象子类，必须实现基类中的抽象方法。抽象方法的修饰符必须是Public
         public abstract void RegisterTypes(SimpleIoc containter);
 
-
         public static SimpleIoc ContainerProvider { get; private set; }
         ////为每个不同的插件，配置单独的IOC容器，如果都使用默认的IOC，那么就会存在冲突
         //protected SimpleIoc PluginContainer { get; private set; }
 
-        public ApplicationBase()
+        public ExternalApplicationBase()
         {
+            //手动加载第三方包的dll，不然很多库就找不到
+            this.load();
+            //自定义IOC容器，设置IOC容器
             ContainerProvider = new SimpleIoc();
             ServiceLocator.SetLocatorProvider(() => ContainerProvider);
         }
@@ -43,9 +45,6 @@ namespace Mcc.Revit.Toolkit.Mvvm
 
         public Result OnStartup(UIControlledApplication application)
         {
-            //手动加载dll
-            this.load();
-
             //开始初始化IOC容器，并根据接口或实例注入
             //容器写在Application这里，不可以使用AddinManager调试
 
@@ -64,14 +63,14 @@ namespace Mcc.Revit.Toolkit.Mvvm
                 events.Subscribe();
             }
 
-            //创建Ribbon UI
+            //创建RibbonUI，把功能添加到Revit的面板上
             //IApplicationUI是在项目中注册App.cs中创建的，在APPUI.cs实例化的
             var appUI = ServiceLocator.Current.GetInstance<IApplicationUI>();
             // 如果appUI是null返回cancelled。否则进行UI界面初始化
             return appUI == null ? Result.Cancelled : appUI.Initial();
         }
 
-
+        //手动加载第三方包的dll，不然很多库就找不到
         private void load()
         {
             // Assembly.GetExecutingAssembly().Location 

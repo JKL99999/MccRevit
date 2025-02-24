@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Mcc.Revit.Master
 {
-    public class App : ApplicationBase
+    public class App : ExternalApplicationBase
     {
         //程序的主入口文件
         //程序按照ApplicationBase里面定义的方法顺序执行的
@@ -36,10 +36,10 @@ namespace Mcc.Revit.Master
             RegisterExternalEvents();
 
             //注册程序级UI
-            containter.Register<IApplicationUI, AppUI>();
+            containter.Register<IApplicationUI, AppUIManager>();
 
             //注册程序级事件
-            containter.Register<IEventManager, AppEvent>();
+            containter.Register<IEventManager, AppEventManager>();
 
             //注册VM解耦的服务Service
             containter.Register<IMaterialService, MaterialService>();

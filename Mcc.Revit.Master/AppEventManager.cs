@@ -1,4 +1,7 @@
 ﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
+using Autodesk.Revit.UI.Events;
+using Mcc.Revit.Toolkit.Mvvm;
 using Mcc.Revit.Toolkit.Mvvm.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Mcc.Revit.Master
 {
-    public class AppEvent : IEventManager
+    public class AppEventManager : IEventManager
     {
 
         //虽然我们定义的时候是接口，但是创建的时候用的是子类
         private readonly IUIProvider _uIProvider;
-        public AppEvent(IUIProvider uIProvider)
+        public AppEventManager(IUIProvider uIProvider)
         {
             _uIProvider = uIProvider;
         }
@@ -24,8 +27,8 @@ namespace Mcc.Revit.Master
         {
             _uIProvider.GetApplication().DocumentCreated += AppEvent_DocumentCreated;
             _uIProvider.GetUIApplication().ViewActivated += AppEvent_ViewActivated;
+            
         }
-
 
         private void AppEvent_DocumentCreated(object sender, Autodesk.Revit.DB.Events.DocumentCreatedEventArgs e)
         {

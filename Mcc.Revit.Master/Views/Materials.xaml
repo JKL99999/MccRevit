@@ -2,111 +2,120 @@
     x:Class="Mcc.Revit.Master.Views.Materials"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:c="clr-namespace:Mcc.Revit.Master.Converters"
+    xmlns:converter="clr-namespace:Mcc.Revit.Master.Converters"
+    xmlns:custom="clr-namespace:Mcc.Revit.Toolkit.UI;assembly=Mcc.Revit.Toolkit.UI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:Mcc.Revit.Master.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="materialWindow"
     Title="Materials"
-    Width="800"
+    Width="750"
     Height="450"
+    WindowStyle="None"
+    Style="{DynamicResource winStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Resources>
-        <c:ColorConverter x:Key="ColorConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Mcc.Revit.Master;component/Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--  定义转换器  -->
+            <converter:ColorConverter x:Key="ColorConverter" />
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="5">
+
+    <!--  标题栏固定35px  -->
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition />
-            <RowDefinition Height="35" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <TextBox
-            Width="200"
-            HorizontalAlignment="Left"
-            VerticalContentAlignment="Center"
-            Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged">
-                    <i:InvokeCommandAction Command="{Binding QueryElementsCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
 
-        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button
-                Margin="0,0,5,0"
-                Command="{Binding CreateElementCommand}"
-                Content="创建材质" />
-            <Button
-                Margin="0,0,5,0"
-                Command="{Binding DeleteElementCommand}"
-                CommandParameter="{Binding ElementName=materials, Path=SelectedItems}"
-                Content="删除材质" />
-            <Button Margin="0,0,5,0" Content="导入材质" />
-            <Button
-                Margin="0,0,5,0"
-                Command="{Binding ExportMaterialCommand}"
-                Content="导出材质" />
-        </StackPanel>
+            <custom:TipTextBox
+                VerticalAlignment="Center"
+                Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}"
+                Tip="请输入材质名称！">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ElementName=materialWindow, Path=DataContext.QueryElementsCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </custom:TipTextBox>
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <custom:IconButton
+                    Command="{Binding ElementName=materialWindow, Path=DataContext.CreateElementCommand}"
+                    Content="新建"
+                    Icon="&#xe695;"
+                    IconFontFamily="{StaticResource font}" />
+                <custom:IconButton
+                    Command="{Binding ElementName=materialWindow, Path=DataContext.DeleteElementsCommand}"
+                    CommandParameter="{Binding ElementName=materials, Path=SelectedItems}"
+                    Content="删除"
+                    Icon="&#xe610;"
+                    IconFontFamily="{StaticResource font}" />
+            </StackPanel>
+        </Grid>
 
         <ListBox
             x:Name="materials"
             Grid.Row="1"
-            Margin="0,5"
-            ItemsSource="{Binding Materials}"
-            SelectionMode="Extended">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListBoxItem">
-                                <Border x:Name="back">
-                                    <ContentPresenter />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="back" Property="Background" Value="#7F969696" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListBox.ItemContainerStyle>
-
+            Margin="0,5,0,20"
+            ItemsSource="{Binding Materials, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedMaterial}"
+            SelectionMode="Extended"
+            Style="{StaticResource listBox}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Padding="5" Background="Transparent">
-
-                        <DockPanel LastChildFill="False">
+                    <Grid
+                        Height="30"
+                        Margin="3,0,0,0"
+                        Background="#00FFFFFF">
+                        <!--  定义两列：左侧自适应宽度，右侧占用剩余空间  -->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <!--  使用border画出来一个矩形框表示材质的颜色  -->
+                            <!--  ListBox绑定了Elements，ItemTemplate被自动设置DataContext绑定单个Material。  -->
+                            <!--  所以这里可以直接绑定material的属性Name  -->
                             <Border
-                                Width="20"
-                                Height="20"
+                                Width="18"
+                                Height="18"
+                                Margin="5,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
                                 Background="{Binding Color, Converter={StaticResource ColorConverter}}"
-                                CornerRadius="5"
-                                DockPanel.Dock="Left" />
-                            <TextBlock DockPanel.Dock="Left" Text="{Binding Name}" />
-
-                            <Border
-                                Width="20"
-                                Height="20"
-                                Background="{Binding AppearanceColor, Converter={StaticResource ColorConverter}}"
-                                CornerRadius="5"
-                                DockPanel.Dock="Left" />
-                            <Button
+                                BorderBrush="#808080"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                            <!--  材质名称  -->
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="{Binding Name}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <custom:IconButton
                                 Command="{Binding ElementName=materialWindow, Path=DataContext.EditMaterialCommand}"
                                 CommandParameter="{Binding}"
-                                Content="编辑"
-                                DockPanel.Dock="Right" />
-                        </DockPanel>
-                    </Border>
+                                Icon="&#xe62c;"
+                                IconFontFamily="{StaticResource font}"
+                                ToolTip="编辑" />
+                        </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
 
         <Button
@@ -114,7 +123,8 @@
             Grid.Row="2"
             Width="200"
             Command="{Binding SubmitCommand}"
-            Content="确定" />
+            Content="确定"
+            Style="{StaticResource submit}" />
 
     </Grid>
 </Window>

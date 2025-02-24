@@ -25,7 +25,7 @@ namespace Mcc.Revit.Toolkit.Mvvm
         //DataContext是在OnstartUp方法中注册到容器的，包含了document,UIAPPLication,UIDocument，在不同地方注册到容器
         protected IDataContext DataContext { get => ServiceLocator.Current.GetInstance<IDataContext>(); }
 
-        public SimpleIoc ContainerProvider => ApplicationBase.ContainerProvider;
+        public SimpleIoc ContainerProvider => ExternalApplicationBase.ContainerProvider;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
