@@ -152,7 +152,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Assets\alipay.png" />
+	  <None Remove="Assets\icon.png" />
+	  <None Remove="Assets\merit.gif" />
+	  <None Remove="Assets\wechatpay.png" />
 	  <None Remove="Resources\iconfont.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
 	</ItemGroup>
 
 
@@ -186,7 +194,19 @@
 	  <ProjectReference Include="..\Mcc.Revit.Toolkit.UI\Mcc.Revit.Toolkit.UI.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Resource Include="Resources\iconfont.ttf">
+	  <Resource Include="Assets\alipay.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\icon.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\merit.gif">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\wechatpay.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\iconfont.ttf">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	</ItemGroup>

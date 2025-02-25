@@ -12,9 +12,7 @@
         <Setter Property="Foreground" Value="{StaticResource MccSbcMainForeground}" />
     </Style>
 
-    <Style
-        BasedOn="{StaticResource MccSbcButtonBase}"
-        TargetType="{x:Type local:IconButton}">
+    <Style BasedOn="{StaticResource MccSbcButtonBase}" TargetType="{x:Type local:IconButton}">
 
         <Setter Property="Template">
             <Setter.Value>

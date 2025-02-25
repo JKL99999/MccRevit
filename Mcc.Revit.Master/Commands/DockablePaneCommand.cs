@@ -12,7 +12,7 @@ using System.Windows;
 namespace Mcc.Revit.Master.Commands
 {
     [Transaction(TransactionMode.Manual)]
-    public class DockablePaneCommand : CommandBase
+    public class DockablePaneCommand : ExternalCommandBase
     {
         public override Window CreateMainWindow()
         {

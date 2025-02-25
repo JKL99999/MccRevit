@@ -16,7 +16,7 @@ using UIFramework;
 namespace Mcc.Revit.Master.Commands.Test
 {
     [Transaction(TransactionMode.Manual)]
-    public class DocumentCommand : CommandBase
+    public class DocumentCommand : ExternalCommandBase
     {
 
         public override void RegisterTypes(SimpleIoc simpleIoc)

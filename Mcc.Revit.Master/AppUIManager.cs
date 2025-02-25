@@ -27,9 +27,10 @@ namespace Mcc.Revit.Master
 
             application.CreateRibbonTab(_tab);
             RibbonPanel panel = application.CreateRibbonPanel(_tab, "资源");
-            RibbonPanel toWebPanel = application.CreateRibbonPanel(_tab, "联系我");
             RibbonPanel testPanel = application.CreateRibbonPanel(_tab, "模块测试");
             RibbonPanel dockablePanel = application.CreateRibbonPanel(_tab, "可停靠窗口");
+            RibbonPanel toWebPanel = application.CreateRibbonPanel(_tab, "联系我");
+
             panel.CreateButton<MaterialCommand>(
                (b) => {
                    b.Text = "材质管理";
@@ -67,8 +68,15 @@ namespace Mcc.Revit.Master
                 b.LargeImage = Properties.Resources.toWebBig.ConvertToBitmapSource();
                 b.Image = Properties.Resources.toWeb.ConvertToBitmapSource();
             }
-          );
-
+            );
+            toWebPanel.CreateButton<Commands.SponsorMeCommand>((b) =>
+            {
+             
+                b.Text = "赞助";
+                b.LargeImage = Properties.Resources.sponsor_32.ConvertToBitmapSource();
+                b.Image = Properties.Resources.sponsor_16.ConvertToBitmapSource();
+                b.ToolTip = "感谢您的赞助";
+            });
             return Result.Succeeded;
         }
     }

@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace Mcc.Revit.Toolkit.Mvvm
 {
-    public abstract class CommandBase : IExternalCommand
+    public abstract class ExternalCommandBase : IExternalCommand
     {
         //abstract抽象方法一定要重载;virtual虚方法是预留的接口，需要用到的时候再重载
         public virtual void RegisterTypes(SimpleIoc simpleIoc) { }
@@ -47,8 +47,9 @@ namespace Mcc.Revit.Toolkit.Mvvm
                     MainWindow = window;
                 }
 
-                // 执行具体的命令逻辑
-                Execute(ref message, elements);
+                // 执行具体的命令逻辑并检查返回值
+                Result result = Execute(ref message, elements);
+                return result; // 直接返回抽象 Execute 的结果
             }
             catch (Exception ex)
             {
@@ -60,10 +61,7 @@ namespace Mcc.Revit.Toolkit.Mvvm
             {
                 // 取消注册 Document
                 ContainerProvider.Unregister<Document>();
-            }
-
-            // 这一行不会执行
-            return Result.Succeeded;
+            } 
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Mcc.Revit.Master.Commands
 {
     //事务特性(必须添加)；日志；生成模式
     [Transaction(TransactionMode.Manual)]
-    public class MaterialCommand : CommandBase
+    public class MaterialCommand : ExternalCommandBase
     {
         public override Window CreateMainWindow()
         {
