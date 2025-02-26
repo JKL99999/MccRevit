@@ -47,11 +47,13 @@ namespace Mcc.Revit.Master
 
             //注册命令级ViewModel。与View对应
             containter.Register<MaterialsViewModel>();
+            containter.Register<SurfingViewModel>();
             containter.Register<ProgressBarDialogViewModel>();
 
             //注册命令级View。新增按钮也统一在这里注册。
 
             containter.Register<Views.Materials>();
+            containter.Register<Views.SurfingView>();
             containter.Register<Views.ProgressBarDialog>();
         }
 

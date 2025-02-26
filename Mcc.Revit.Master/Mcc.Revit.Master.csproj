@@ -153,8 +153,16 @@
 
 	<ItemGroup>
 	  <None Remove="Assets\alipay.png" />
+	  <None Remove="Assets\back.png" />
+	  <None Remove="Assets\bilibili.png" />
+	  <None Remove="Assets\enter.png" />
+	  <None Remove="Assets\forward.png" />
+	  <None Remove="Assets\home.png" />
 	  <None Remove="Assets\icon.png" />
+	  <None Remove="Assets\kimi.png" />
 	  <None Remove="Assets\merit.gif" />
+	  <None Remove="Assets\refresh.png" />
+	  <None Remove="Assets\tongyi.png" />
 	  <None Remove="Assets\wechatpay.png" />
 	  <None Remove="Resources\iconfont.ttf" />
 	</ItemGroup>
@@ -197,10 +205,34 @@
 	  <Resource Include="Assets\alipay.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Assets\back.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\bilibili.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\enter.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\forward.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\home.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Assets\icon.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Assets\kimi.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Assets\merit.gif">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\refresh.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Assets\tongyi.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Assets\wechatpay.png">

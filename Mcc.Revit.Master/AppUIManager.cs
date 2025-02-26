@@ -29,6 +29,7 @@ namespace Mcc.Revit.Master
             RibbonPanel panel = application.CreateRibbonPanel(_tab, "资源");
             RibbonPanel testPanel = application.CreateRibbonPanel(_tab, "模块测试");
             RibbonPanel dockablePanel = application.CreateRibbonPanel(_tab, "可停靠窗口");
+            RibbonPanel xProPanel = application.CreateRibbonPanel(_tab, "XPro");
             RibbonPanel toWebPanel = application.CreateRibbonPanel(_tab, "联系我");
 
             panel.CreateButton<MaterialCommand>(
@@ -52,14 +53,21 @@ namespace Mcc.Revit.Master
             );
 
             dockablePanel.CreateButton<Commands.DockablePaneCommand>((b) => {
-                b.Text = "可停靠窗口";
-                b.ToolTip = "可停靠窗口";
+                b.Text = "生成文字";
+                b.ToolTip = "输入文字，生成文字";
                 b.LargeImage = Properties.Resources.dragonBig.ConvertToBitmapSource();
                 b.Image = Properties.Resources.dragon.ConvertToBitmapSource();
             });
             //UIControlledApplication注册可停靠窗口
             application.RegisterDockablePane(DockablePanes.DockablePaneProvider.Id, "DockablePane", new DockablePanes.DockablePaneProvider());
 
+            xProPanel.CreateButton<Commands.SurfingCommand>((b) =>
+            {
+                b.Text = "XPro";
+                b.ToolTip = "做一些有趣的功能";
+                b.LargeImage = Properties.Resources.bilibili_32.ConvertToBitmapSource();
+                b.Image = Properties.Resources.bilibili_16.ConvertToBitmapSource();
+            });
 
             toWebPanel.CreateButton<Commands.HelpCommand>(
             (b) => {

@@ -113,6 +113,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RVT_22_Debug|AnyCPU'" />
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2535.41" />
 		<PackageReference Include="Revit_API_x64" Version="2020.0.0" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Revit_API_x64" Version="2020.0.0" Condition="'$(Configuration)'=='Release'" />
 		<PackageReference Include="Revit_API_x64" Version="2016.0.0" Condition="'$(Configuration)'=='RVT_16_Debug'" />
